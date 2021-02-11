@@ -183,11 +183,13 @@ def PayloadsConfiguration():
     if request.method == "POST":
         proxy = request.form['proxy']
         payload_file = request.form['payload_file']
-        file = request.files['upload_file']
-        optionUpdate('proxy',proxy)
-        optionUpdate('payload_file',payload_file)
-        if file.filename != '':
+        try:
+            file = request.files['upload_file']
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+        except:
+            pass
+        optionUpdate('proxy',proxy)
+        optionUpdate('payload_file',payload_file)            
         return redirect('/')
 
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
