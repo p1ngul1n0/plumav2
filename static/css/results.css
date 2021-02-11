@@ -1,0 +1,88 @@
+.container {
+    color: white;
+    background-color: #999999;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+.item {
+    background-color: #000000;
+    padding: 2vw;
+    border-radius: 2%;
+    height: max-content;
+    width: 45%;
+    border: 2px solid #FDFDFD;
+    flex-grow: 0;
+    transition: top 1s;
+}
+.card-title {
+    font-size: 250%;
+    margin: 2px;
+    color: #9E1221;
+}
+.card-subtitle {
+    font-size: 150%;
+    margin: 2px;
+}
+.raw-response {
+    border-radius: 10px;
+    padding: 9px;
+    color: black;
+    background-color: #999999;
+}
+.raw-response p {
+    margin: 0px;
+}
+.secure-headers {
+    border-radius: 10px;
+    color: black;
+    padding: 9px;
+    background-color: #999999;
+}
+.sensitive-headers {
+    border-radius: 10px;
+    color: black;
+    padding: 9px;
+    background-color: #999999;
+}
+.secure-headers p {
+    margin: 1px;
+}
+.checklist {
+    color: white;
+    text-align: center;
+}
+.nok {
+    background-color: #9E1221;
+}
+.ok {
+    background-color: #00C060;
+}
+.methods {
+    border-radius: 10px;
+    padding: 9px;
+    color: black;
+    background-color: #999999;
+}
+.methods p {
+    margin: 1px;
+}
+th {
+    background-color: black;
+    color: white;
+}
+td {
+    padding: 0 20px;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0px 0;
+    border: solid 2px black;
+}
+.enum {
+    border-radius: 10px;
+    padding: 9px;
+    color: black;
+    background-color: #999999;
+}

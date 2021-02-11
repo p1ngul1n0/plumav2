@@ -1,0 +1,95 @@
+.container {
+    background-color: #999999;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.item {
+    padding: 2vh 1vw;
+    background-color: #000000;
+    margin-top: 2vh;
+    width: 50vw;
+    border-radius: 2%;
+    border: 2px solid #FDFDFD;
+}
+.proxy-input {
+    outline: none;
+    width: 40vw;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 2px white;
+}
+.payload-input {
+    display: none;
+}
+input {
+    color: white;
+    background-color: black;
+    font-size: 100%;
+}
+.form-subtitle {
+    color: white;
+    font-size: 300%;
+    float:left;
+    width: 100%;
+    margin-left: 5vw;
+    margin-top: 0;
+    margin-bottom: 0vh;
+}
+.options-group {
+    color: white;
+    font-size: 200%;
+    width: auto;
+    float:left;
+    margin-left: 5vw;
+    margin-right: 3vw;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+}
+.option-label {
+    margin-right: 2vw;
+}
+.file-list {
+    margin: 2%;
+    border: 2px solid #222222;
+    list-style: none;
+    height: 10vh;
+    overflow-y: scroll;
+    width: 100%;
+}
+#upload-file-button {
+    border-radius: 2%;
+    border: 2px solid #222222;
+}
+.file-input {
+    display: none;
+    color: white;
+    background-color: black;
+    font-size: 100%;
+}
+#submit-button {
+    position: relative;
+    right: 5vw;
+    top: 25vh;
+    float: right;
+    background-color: #1DF301;
+    color: white;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    font-weight: bold;
+    font-size: 150%;
+    border: solid 2px white;
+    border-radius: 20px;
+}
+#submit-button:hover {
+    border: solid 2px #5EFF00;
+    box-shadow: 0 0px 16px 10px #5EFF00;
+}
+.selected-item {
+    background-color: #9E1221;
+}
