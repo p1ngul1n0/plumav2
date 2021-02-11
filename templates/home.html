@@ -7,7 +7,7 @@
     {% for scan in scans %}
         <div class="item">
             <div class="scan-actions">
-                {% if scan.status == 'not executed' or scan.status == 'completed' %}
+                {% if scan.status == 'not executed' or scan.status == 'completed' or scan.status == 'failed' %}
                     <a class="button-action" href="/start/{{ scan.uuid }}">
                         <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#5EFF00" class="bi bi-play-fill" viewBox="0 0 16 16">
                             <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
@@ -42,6 +42,8 @@
                     <span class="status running">{{ scan.status }}</span>
                 {% elif scan.status == 'completed' %}
                     <span class="status completed">{{ scan.status }}</span>
+                {% elif scan.status == 'failed' %}
+                    <span class="status failed">{{ scan.status }}</span>
                 {% endif %}
                 <h2 class="name">{{ scan.name }}</h2>
                 <p class="url">{{ scan.url }}</p>
