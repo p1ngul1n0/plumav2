@@ -1,6 +1,7 @@
 {% extends "main.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<script defer src="{{ url_for('static', filename='js/home.js') }}"></script>
     {% if scans|length == 0 %}
         <h2 class="empty-message">You don't have any scans yet. Your saved scans will be shown here.</h2>
     {% endif %}
