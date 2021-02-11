@@ -58,7 +58,9 @@
 .completed {
     background-color: #00C060;
 }
-
+.failed {
+    background-color: #D9534F;
+}
 .scan-actions {
     display: none;
     position: absolute;
