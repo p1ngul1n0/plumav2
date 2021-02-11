@@ -3,8 +3,8 @@ import requests
 class Scan:
     def __init__(self,url,proxy):
         self.url = url
-        self.proxy = proxy
-        self.response = requests.get(url=self.url,verify=False)
+        self.proxy = { 'http'  : 'http://'+proxy, "https" : 'https://'+proxy, "ftp" : 'ftp://'+proxy }
+        self.response = requests.get(url=self.url,verify=False,proxies=self.proxy)
         self.headers  = self.response.headers
     def heads(self):
         secure = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy', 'Strict Transport Security', 'X-Content-Type-Options', 'X-Permitted-Cross-Domain-Policies', 'Referrer-Policy', 'Expect-CT', 'Feature-Policy']
@@ -22,7 +22,7 @@ class Scan:
         methods = ['GET','POST','DELETE','TRACE','CONNECT','PUT','HEAD','BOB']
         returnMethods = {}
         for method in methods:
-            response = requests.request(method,self.url,verify=False)
+            response = requests.request(method,self.url,verify=False,proxies=self.proxy)
             returnMethods[method] = '['+str(response.status_code)+'] '+response.reason
         return returnMethods
     def enum(self,payload_file):
@@ -31,7 +31,7 @@ class Scan:
             i = 0
             for payload in payloads:
                 directory = {}
-                response = requests.get(url=self.url+'/'+payload.strip())
+                response = requests.get(url=self.url+'/'+payload.strip(),verify=False,proxies=self.proxy)
                 directory['id'] = i
                 directory['payload'] = payload.strip()
                 directory['status'] = str(response.status_code)
