@@ -58,7 +58,6 @@ def executeScan(uuid, url, enumeration, spidering):
 # Home page
 @app.route('/')
 def home():
-    initDatabase()
     # Return home page with scans in scanGetAll function
     return render_template('home.html', title='My scans', scans=scanGetAll())
 
