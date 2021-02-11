@@ -18,42 +18,38 @@ def executeScan(uuid, url, enumeration, spidering):
     proxy = optionGet('proxy')
     payload_file = optionGet('payload_file')
 
-    # Set Scan object
-    scan = Scan(url,proxy)
+    try:
+        # Set Scan object
+        scan = Scan(url,proxy)
+        # Store INFO results in SQLite
+        resultSet(uuid,'info','status',scan.response.status_code)
+        resultSet(uuid,'info','reason',scan.response.reason)
+        resultSet(uuid,'info','headers',scan.headers)
 
-    # Store INFO results in SQLite
-    resultSet(uuid,'info','status',scan.response.status_code)
-    resultSet(uuid,'info','reason',scan.response.reason)
-    resultSet(uuid,'info','headers',scan.headers)
+        # Run Web Heads
+        returnSecureHeaders, returnSensitiveHeaders = scan.heads()
+        # Store HEADERS results in SQLite
+        resultSet(uuid,'headers','rawHeaders',scan.headers)
+        resultSet(uuid,'headers','secureHeaders',returnSecureHeaders)
+        resultSet(uuid,'headers','sensitiveHeaders',returnSensitiveHeaders)
 
-    # Run Web Heads
-    returnSecureHeaders, returnSensitiveHeaders = scan.heads()
+        # Run Web Method
+        returnMethods = scan.method()
+        # Store METHODS results in SQLite
+        resultSet(uuid,'methods','methods',returnMethods)
 
-    # Store HEADERS results in SQLite
-    resultSet(uuid,'headers','rawHeaders',scan.headers)
-    resultSet(uuid,'headers','secureHeaders',returnSecureHeaders)
-    resultSet(uuid,'headers','sensitiveHeaders',returnSensitiveHeaders)
-
-    # Run Web Method
-    returnMethods = scan.method()
-
-    # Store METHODS results in SQLite
-    resultSet(uuid,'methods','methods',returnMethods)
-
-    # If scan enumeration was set to 1 by user, execute Web Enum
-    if enumeration == 1:
-        enum = scan.enum(payload_file)
-        # Store ENUM results in SQLite 
-        resultSet(uuid,'enum','directories',enum)
-    
-    # Get current datetime
-    date_hour = datetime.now().strftime('%d/%m/%Y %H:%M')
-
-    # Store DETAILS results in SQLite  
-    resultSet(uuid, 'details', 'date', date_hour)
-
-    # Store scan status as completed on SQLite
-    scanStatus(uuid,'completed')
+        if enumeration == 1:
+            enum = scan.enum(payload_file)
+            # Store ENUM results in SQLite 
+            resultSet(uuid,'enum','directories',enum)
+        # Store DETAILS results in SQLite
+        date_hour = datetime.now().strftime('%d/%m/%Y %H:%M')
+        resultSet(uuid, 'details', 'date', date_hour)
+        # Store scan status as completed on SQLite
+        scanStatus(uuid,'completed')
+    except Exception as error:
+        print (error)
+        scanStatus(uuid,'failed')
 
 # Home page
 @app.route('/')
