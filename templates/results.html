@@ -1,7 +1,7 @@
 {% extends "main.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/results.css') }}">
-
+<script defer src="{{ url_for('static', filename='js/results.js') }}"></script>
 <div class="item">
     <p class="card-title">INFO</p>
     <p class="card-subtitle">RAW RESPONSE</p>
@@ -39,18 +39,22 @@
     </div>
     <p class="card-subtitle">SENSITIVE HEADERS</p>
     <div class="sensitive-headers">
-        <table>
-            <tr>
-              <th>HEADER</th>
-              <th>VALUE</th>
-            </tr>
-            {% for header in sensitiveHeaders %}
+        {% if sensitiveHeaders|length != 0 %}
+            <table>
                 <tr>
-                    <td>{{ header }}</td>
-                    <td>{{ sensitiveHeaders[header] }}</td>
+                    <th>HEADER</th>
+                    <th>VALUE</th>
                 </tr>
-            {% endfor %}
-        </table>
+                {% for header in sensitiveHeaders %}
+                    <tr>
+                        <td>{{ header }}</td>
+                        <td>{{ sensitiveHeaders[header] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No sensitive header was identified.</p>
+        {% endif %}
     </div>
 </div>
 <div class="item">
@@ -80,6 +84,7 @@
                     <th>PAYLOAD</th>
                     <th>STATUS & REASON</th>
                     <th>SIZE</th>
+                    <th>RESPONSE</th>
                 </tr>
             {% for directory in enum %}
                 <tr>
@@ -87,11 +92,16 @@
                     <td>{{ directory.payload }}</td>
                     <td>{{ directory.status }} {{ directory.reason }}</td>
                     <td>{{ directory.size }}</td>
+                    <td class="response-button">+</td>
+                </tr>
+                <tr class="response-tr">
+                    <td class="response-td" colspan="5">
+                        <textarea readonly autocomplete="off" class="response-text">{{ directory.content }}</textarea>
+                    </td>
                 </tr>
         {% endfor %}
     {% else %}
-        <h2>ENUM</h2>
-        <p>Not executed</p>
+        <p>Not executed.</p>
     {% endif %}
     </div>
 </div>
