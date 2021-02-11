@@ -160,9 +160,9 @@ def resultScan(uuid):
         except:
             enum = ''
             pass
-        return render_template('results.html', title='Results', name=name, url=url, status=status, 
+        return render_template('results.html', title='Results | '+date+'  '+name+' - '+url, name=name, url=url, date=date, status=status, 
         reason=reason, headers=headers, secure=secure, secureHeaders=secureHeaders, 
-        sensitiveHeaders=sensitiveHeaders, methods=methods, date=date, enum=enum)
+        sensitiveHeaders=sensitiveHeaders, methods=methods, enum=enum)
 
 @app.route('/configuration', methods=['GET','POST'])
 def PayloadsConfiguration():
