@@ -1,3 +1,3 @@
 $(document).ready(function() {
-    setTimeout(function() {location.reload();}, 300);
+    setTimeout(function() {location.reload();}, 120000);
 });
