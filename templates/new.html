@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/new.css') }}">
+<script defer src="{{ url_for('static', filename='js/new.js') }}"></script>
+<div class="item">
+    <form action="/new" method="POST">
+                <div class="options-group">
+                    <label class="option-label">Name</label>
+                    <input class="name-input" type="text" name="name" placeholder="My new Scan" autocomplete="off" required>
+                </div>
+                <div class="options-group">
+                    <label class="option-label" >URL</label>
+                    <input class="url-input" type="text" name="url" placeholder="https://example.com" autocomplete="off" required>
+                </div>
+                <div class="options-group">
+                    <input type="hidden" id="enumerationHidden" name="enumeration" value="0" />
+                    <input type="checkbox" id="enumeration" name="enumeration" value="1" autocomplete="off">
+                    <label class="option-label" for="enumeration">Content enumeration</label>
+                </div>
+                <div class="options-group" style="display: none;">
+                    <input type="hidden" id="spideringHidden" name="spidering" value="0" />
+                    <input type="checkbox" id="spidering" name="spidering" value="1" autocomplete="off" >
+                    <label class="option-label" for="spidering">Spidering</label>
+                </div>
+                <button type="submit" id="submit-button">SEND!</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "main.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/results.css') }}">
+
+<div class="item">
+    <p class="card-title">INFO</p>
+    <p class="card-subtitle">RAW RESPONSE</p>
+    <div class="raw-response">
+        <p>HTTP {{status}}  {{reason}}</p>
+        {% for header in headers %}
+            <p>{{ header }} : {{ headers[header] }}</p>
+        {% endfor %}
+    </div>
+</div>
+<div class="item">
+    <p class="card-title">HEADERS</p>
+    <p class="card-subtitle">SECURE HEADERS</p>
+    <div class="secure-headers">
+        <table>
+            <tr>
+              <th>STATUS</th>
+              <th>HEADER</th>
+              <th>VALUE</th>
+            </tr>
+        {% for header in secure %}
+            <tr>
+                {% if header in secureHeaders %}
+                    <td class="checklist ok">OK</td>
+                    <td>{{ header }}</td>
+                    <td>{{ secureHeaders[header] }}</td>
+                {% else %}
+                    <td class="checklist nok">OK</td>
+                    <td>{{ header }}</td>
+                    <td></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+    <p class="card-subtitle">SENSITIVE HEADERS</p>
+    <div class="sensitive-headers">
+        <table>
+            <tr>
+              <th>HEADER</th>
+              <th>VALUE</th>
+            </tr>
+            {% for header in sensitiveHeaders %}
+                <tr>
+                    <td>{{ header }}</td>
+                    <td>{{ sensitiveHeaders[header] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<div class="item">
+    <p class="card-title">METHODS</p>
+    <div class="methods">
+        <table>
+            <tr>
+              <th>METHOD</th>
+              <th>STATUS & REASON</th>
+            </tr>
+            {% for method in methods %}
+                <tr>
+                    <td>{{ method }}</td>
+                    <td>{{ methods[method] }}</td>
+                </tr>
+        {% endfor %}
+        </table>
+    </div>
+</div>
+<div class="item">
+    <p class="card-title">ENUM</p>
+    <div class="enum">
+        {% if enum != '' %}
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>PAYLOAD</th>
+                    <th>STATUS & REASON</th>
+                    <th>SIZE</th>
+                </tr>
+            {% for directory in enum %}
+                <tr>
+                    <td>{{ directory.id }}</td>
+                    <td>{{ directory.payload }}</td>
+                    <td>{{ directory.status }} {{ directory.reason }}</td>
+                    <td>{{ directory.size }}</td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <h2>ENUM</h2>
+        <p>Not executed</p>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

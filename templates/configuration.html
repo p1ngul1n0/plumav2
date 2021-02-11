@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/configuration.css') }}">
+<script async src="{{ url_for('static', filename='js/configuration.js') }}"></script>
+<div class="item">
+    <form action="/configuration" method="POST" enctype="multipart/form-data">
+
+                <h2 class="form-subtitle">Proxy</h2>
+                <div class="options-group">
+                    <label class="option-label">Host & Port</label>
+                    {% if proxy != 'false' %} 
+                        <input class="proxy-input" type="text" name="proxy" placeholder="127.0.0.1:8080" autocomplete="off" value="{{ proxy }}">
+                    {% else %}
+                        <input class="proxy-input" type="text" name="proxy" placeholder="127.0.0.1:8080" autocomplete="off" value="">
+                    {% endif %}
+                </div>
+                <h2 class="form-subtitle">Payloads</h2>
+                <div class="options-group">
+                    <label class="option-label">Select a payload file to use</label>
+                    <input class="file-input" id="payload_file" type="text" name="payload_file" placeholder="list.txt" required autocomplete="off" value="{{ file }}">
+                    <ul class="file-list">
+                        {% for filename in list_of_files %}
+                            {% if filename == file %}
+                                <li class="file-item selected-item">{{ filename }}</li>
+                            {% else %}
+                                <li class="file-item">{{ filename }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <label class="file-label" for='fileInput'>Upload a new file <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                      </svg></label>
+                    <input class="file-input" id='fileInput' name="upload_file" type='file'>
+                </div>
+                <button id="submit-button" type="submit">SAVE</button>
+    </form>
+</div>
+{% endblock %}
