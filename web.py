@@ -50,6 +50,7 @@ class Scan:
                 directory['status'] = str(response.status_code)
                 directory['reason'] = response.reason
                 directory['size'] = len(response.content)
+                directory['content'] = response.text
                 returnDirectories.append(directory)
                 i += 1
             return returnDirectories
