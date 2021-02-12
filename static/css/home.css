@@ -30,6 +30,7 @@
 }
 .name {
     color: white;
+    margin-right: 20px;
 }
 .item:hover .scan-actions {
     display: inline;
