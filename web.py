@@ -14,7 +14,7 @@ class Scan:
             self.response = requests.get(url=self.url,verify=False)
         self.headers  = self.response.headers
     def heads(self):
-        secure = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy', 'Strict Transport Security', 'X-Content-Type-Options', 'X-Permitted-Cross-Domain-Policies', 'Referrer-Policy', 'Expect-CT', 'Feature-Policy']
+        secure = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy', 'Strict-Transport-Security', 'X-Content-Type-Options', 'X-Permitted-Cross-Domain-Policies', 'Referrer-Policy', 'Expect-CT', 'Feature-Policy']
         sensitive = ['Server', 'X-Powered-By', 'X-Aspnet-Version', 'X-AspNetMvc-Version']
         returnSecureHeaders = {}
         returnSensitiveHeaders = {}
