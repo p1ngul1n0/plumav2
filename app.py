@@ -25,6 +25,7 @@ def executeScan(uuid, url, enumeration, spidering):
         resultSet(uuid,'info','status',scan.response.status_code)
         resultSet(uuid,'info','reason',scan.response.reason)
         resultSet(uuid,'info','headers',scan.headers)
+        resultSet(uuid,'info','content',scan.content)
 
         # Run Web Heads
         returnSecureHeaders, returnSensitiveHeaders = scan.heads()
@@ -42,6 +43,12 @@ def executeScan(uuid, url, enumeration, spidering):
             enum = scan.enum(payload_file)
             # Store ENUM results in SQLite 
             resultSet(uuid,'enum','directories',enum)
+        
+        # Run Spider Method
+        returnLinks = scan.spidering()
+        # Store SPIDERING results in SQLite
+        resultSet(uuid,'spidering','links',returnLinks)
+
         # Store DETAILS results in SQLite
         date_hour = datetime.now().strftime('%d/%m/%Y %H:%M')
         resultSet(uuid, 'details', 'date', date_hour)
@@ -153,16 +160,18 @@ def resultScan(uuid):
         status = resultGet(uuid,'info','status')
         reason = resultGet(uuid,'info','reason')
         headers = ast.literal_eval(resultGet(uuid,'info','headers'))
+        content = resultGet(uuid,'info','content')
         sensitiveHeaders = ast.literal_eval(resultGet(uuid,'headers','sensitiveHeaders'))
         methods = ast.literal_eval(resultGet(uuid,'methods','methods'))
+        links = ast.literal_eval(resultGet(uuid,'spidering','links'))
         try:
             enum = ast.literal_eval(resultGet(uuid,'enum','directories'))
         except:
             enum = ''
             pass
         return render_template('results.html', title='Results | '+date, name=name, url=url, date=date, status=status, 
-        reason=reason, headers=headers, secure=secure, secureHeaders=secureHeaders, 
-        sensitiveHeaders=sensitiveHeaders, methods=methods, enum=enum)
+        reason=reason, headers=headers, content=content, secure=secure, secureHeaders=secureHeaders, 
+        sensitiveHeaders=sensitiveHeaders, methods=methods, enum=enum, links=links)
 
 @app.route('/configuration', methods=['GET','POST'])
 def PayloadsConfiguration():

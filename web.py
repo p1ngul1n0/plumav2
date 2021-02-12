@@ -1,5 +1,6 @@
 import requests
 import warnings
+from bs4 import BeautifulSoup
 
 warnings.filterwarnings('ignore')
 
@@ -13,6 +14,7 @@ class Scan:
             self.proxy = ''
             self.response = requests.get(url=self.url,verify=False)
         self.headers  = self.response.headers
+        self.content = self.response.text
     def heads(self):
         secure = ['X-Frame-Options', 'X-XSS-Protection', 'Content-Security-Policy', 'Strict-Transport-Security', 'X-Content-Type-Options', 'X-Permitted-Cross-Domain-Policies', 'Referrer-Policy', 'Expect-CT', 'Feature-Policy']
         sensitive = ['Server', 'X-Powered-By', 'X-Aspnet-Version', 'X-AspNetMvc-Version']
@@ -54,3 +56,13 @@ class Scan:
                 returnDirectories.append(directory)
                 i += 1
             return returnDirectories
+    def spidering(self):
+        returnLinks = []
+        if 'html' in self.headers['Content-Type']:
+            content = BeautifulSoup(self.response.content,'html.parser')
+            for link in content.find_all(href=True):
+                if link['href'] != '#' and link['href'] != '/':
+                    returnLinks.append(link['href'])
+            return returnLinks
+            
+            
