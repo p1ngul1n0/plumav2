@@ -3,7 +3,6 @@
     background-color: #999999;
     display: flex;
     flex-direction: row;
-    align-content: flex-start;
     flex-wrap: wrap;
 }
 .item {
@@ -31,14 +30,20 @@
     margin: 2px;
 }
 .raw-response {
+    font-size: 80%;
     border-radius: 10px;
+    height: 45vh;
     padding: 9px;
     color: black;
     overflow-x: auto;
+    overflow-y: auto;
     background-color: #999999;
 }
 .raw-response p {
     margin: 0px;
+}
+.raw-content {
+    white-space: pre-wrap;
 }
 .secure-headers {
     border-radius: 10px;
@@ -73,6 +78,14 @@
 }
 .methods p {
     margin: 1px;
+}
+.links {
+    border-radius: 10px;
+    padding: 9px;
+    color: black;
+    background-color: #999999;
+    overflow-y: auto;
+    height: 22vh;
 }
 th {
     background-color: black;
