@@ -30,5 +30,4 @@
   
 ## Planned Features
 - PDF report of results
-- Scan progress bar
 - Web Spidering
