@@ -140,7 +140,7 @@ def resultScan(uuid):
         secure = ['X-Frame-Options', 
                   'X-XSS-Protection',
                   'Content-Security-Policy',
-                  'Strict Transport Security',
+                  'Strict-Transport-Security',
                   'X-Content-Type-Options',
                   'X-Permitted-Cross-Domain-Policies',
                   'Referrer-Policy',
@@ -160,7 +160,7 @@ def resultScan(uuid):
         except:
             enum = ''
             pass
-        return render_template('results.html', title='Results | '+date+'  '+name+' - '+url, name=name, url=url, date=date, status=status, 
+        return render_template('results.html', title='Results | '+date, name=name, url=url, date=date, status=status, 
         reason=reason, headers=headers, secure=secure, secureHeaders=secureHeaders, 
         sensitiveHeaders=sensitiveHeaders, methods=methods, enum=enum)
 
