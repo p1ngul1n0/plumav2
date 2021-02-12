@@ -144,7 +144,7 @@ def resultScan(uuid):
                   'X-Content-Type-Options',
                   'X-Permitted-Cross-Domain-Policies',
                   'Referrer-Policy',
-                  'Expect-CT'
+                  'Expect-CT',
                   'Feature-Policy']
         scan = scanGet(uuid)
         name = scan['name']
