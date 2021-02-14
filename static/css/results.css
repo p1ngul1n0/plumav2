@@ -100,6 +100,9 @@ th {
     background-color: black;
     color: white;
 }
+.links p {
+    margin: 1px;
+}
 td {
     border-top: solid 2px black;
     text-align: center;
