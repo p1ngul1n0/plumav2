@@ -116,6 +116,8 @@ table {
     padding: 9px;
     color: black;
     background-color: #999999;
+    overflow-y: auto;
+    height: 22vh;
 }
 .response-td {
     padding: 0;
