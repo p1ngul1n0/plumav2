@@ -63,6 +63,6 @@ class Scan:
             for link in content.find_all(href=True):
                 if link['href'] != '#' and link['href'] != '/':
                     returnLinks.append(link['href'])
-            return returnLinks
+        return returnLinks
             
             
