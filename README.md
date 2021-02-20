@@ -8,7 +8,7 @@
 - METHODS
   - Send HTTP request using different methods and show status code and reason for each case.
 - ENUM
-  - Enumerate directories,using any list file.
+  - Enumerate directories using any list file.
 - SPIDERING
   - Extract all links on page.
   
