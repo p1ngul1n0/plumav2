@@ -29,6 +29,3 @@
   
   Accessing on Browser
   **http://127.0.0.1:5000**
-  
-## Planned Features
-- PDF report of results
