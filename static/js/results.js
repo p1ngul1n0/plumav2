@@ -5,8 +5,17 @@ $(document).ready(function() {
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     });
-    $('.response-button').click(function() {
-        $(this).closest('tr').next('.response-tr').toggle();
+
+    $('#render-button').click(function (){
+        $('.raw-response').hide();
+        htmlsource = $('.raw-content').text().replace(/(\r\n|\n|\r)/gm, "");
+        $('.render-content').attr("srcdoc",htmlsource);
+        $('.render-content').show();
+    })
+
+    $('#raw-button').click(function (){
+        $('.raw-response').show();
+        $('.render-content').hide();
     })
 
     $('.open-details').click(function() {
