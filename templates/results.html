@@ -2,6 +2,7 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/results.css') }}">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
 <script defer src="{{ url_for('static', filename='js/results.js') }}"></script>
 <script defer src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 <script defer src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
@@ -11,6 +12,7 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script defer src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
 <script defer src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js "></script>
+<script src="http://bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
 
 <div class="scan-header"><h2>{{ name }} - {{ url }}</h2></div>
 
@@ -151,16 +153,18 @@
                 <div id="modal">
                     <div id="modalContent">
                         <span id="close-modal">x</span>
-                        
                         <p class="card-subtitle">Response content</p>
                         <span id="request-id"></span>
                         <span>|</span>
                         <span id="request-payload"></span>
                         <span>|</span>
                         <span id="request-status"></span>
-                        <textarea readonly autocomplete="off" class="response-text" id="response-text">
+                        <div readonly autocomplete="off" class="response-text" id="response-text">
 
-                        </textarea>
+                        </div>
+                        <span>Search on response</span>
+                        <input id="search-input">
+                        <span id="search-results"></span>
                     </div>
                 </div>
                 <table class="enum-table">
