@@ -48,6 +48,17 @@
     overflow-y: auto;
     background-color: #999999;
 }
+.render-content {
+    font-size: 80%;
+    border-radius: 10px;
+    height: 45vh;
+    padding: 9px;
+    color: black;
+    overflow-x: auto;
+    overflow-y: auto;
+    background-color: #999999;
+    display: none;
+}
 .raw-response p {
     margin: 0px;
 }
