@@ -88,6 +88,12 @@
 .methods p {
     margin: 1px;
 }
+button {
+    background-color: black;
+    color: white;
+    border: solid 2px black;
+    border-radius: 10px;
+}
 .links {
     border-radius: 10px;
     padding: 9px;
@@ -114,25 +120,72 @@ table {
     border-spacing: 0px 0;
     border: solid 2px black;
 }
+label {
+    color: black;
+}
 .enum {
     border-radius: 10px;
     padding: 9px;
     color: black;
     background-color: #999999;
     overflow-y: auto;
-    height: 22vh;
+    height: 40vh;
+}
+.enum-item {
+    background-color: #000000;
+    padding: 2vw;
+    border-radius: 2%;
+    height: max-content;
+
+    border: 2px solid #FDFDFD;
+    flex-grow: 0;
+    transition: top 1s;
 }
 .response-td {
     padding: 0;
-}
-.response-tr {
     display: none;
 }
-.response-text {
+#response-text {
     height: 200px;
     white-space: pre-wrap;
     width: 100%;
+    height: 50vh;
     margin: 0;
     color: white;
     background-color: black;
+}
+.content-raw {
+    display: none;
+}
+#modal {
+    color: white;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%;
+ /* Full height */
+}
+#modalContent {
+    background-color: black;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid white;
+    width: 80%; /* Could be more or less, depending on screen size */
+
+}
+#close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+#close-modal:hover,
+#close-modal:focus {
+    color: #9E1221;
+    text-decoration: none;
+    cursor: pointer;
 }
