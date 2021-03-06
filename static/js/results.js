@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('.enum-table').DataTable({
-        dom: 'Bfrtip',
+        dom: 'lBfrtip',
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
